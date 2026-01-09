@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Happy Birthday Ysah!</title>
+  <style>
+    :root{
+      --bg-top:#0b63a4; --bg-mid:#2b7aaf; --bg-bottom:#77bfe7;
+      --accent:#ffd166; --muted-white:rgba(255,255,255,0.95);
+      --glass:rgba(255,255,255,0.04); --shadow:rgba(3,18,35,0.20);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;font-family:Inter, system-ui, -apple-system,"Segoe UI",Roboto,Arial;
+      background:linear-gradient(180deg,var(--bg-top),var(--bg-mid) 45%,var(--bg-bottom));
+      display:flex;align-items:center;justify-content:center;padding:14px;color:var(--muted-white);
+      -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+    }
+
+    /* Card */
+    .card{
+      width:100%;max-width:420px;height:92vh;border-radius:16px;
+      box-shadow:0 10px 32px var(--shadow);overflow:hidden;
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      display:flex;flex-direction:column;position:relative;
+    }
+
+    /* Header */
+    .card-header{display:flex;align-items:center;justify-content:center;padding:10px 12px;gap:10px}
+    .title{font-weight:700;color:#fff;font-size:14px}
+    .ribbon{width:34px;height:6px;border-radius:6px;background:linear-gradient(90deg,var(--accent),#fff3a8);opacity:.9}
+
+    /* Slides */
+    .slides{display:flex;width:300%;height:100%;transition:transform 620ms cubic-bezier(.2,.9,.2,1);will-change:transform}
+    .slide{width:33.3333%;height:100%;padding:18px;position:relative;display:flex;align-items:center;justify-content:center}
+    .scene{width:100%;height:100%;position:relative;display:flex;align-items:center;justify-content:center}
+
+    /* Hero slide */
+    .hero{text-align:center;z-index:4;max-width:92%}
+    .typewriter{font-weight:800;margin:0 0 12px 0;line-height:1.05;letter-spacing:0.2px;text-shadow:0 6px 18px rgba(0,0,0,0.2);color:#fff}
+    #type-1{font-size:44px;text-transform:uppercase;letter-spacing:1.6px}
+    .hero-sub{font-size:13px;opacity:.92;margin-bottom:12px}
+    .hero-actions{display:flex;gap:10px;justify-content:center}
+
+    /* Message slide */
+    .message-wrap{width:100%;max-width:380px;z-index:5;display:flex;flex-direction:column;gap:12px;align-items:stretch}
+    .message-box{background:var(--glass);border-radius:12px;padding:14px;box-shadow:0 6px 18px rgba(3,18,35,0.12);backdrop-filter:blur(4px);max-height:62vh;overflow:auto;border:1px solid rgba(255,255,255,0.03)}
+    .message-text{font-size:15px;line-height:1.7;font-weight:600;white-space:pre-wrap;color:#fff}
+    .message-actions{display:flex;gap:10px;justify-content:center;margin-top:6px}
+
+    /* Celebration slide */
+    .celebration{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px}
+    .cake-svg{width:220px;filter:drop-shadow(0 8px 20px rgba(0,0,0,0.18))}
+    .typewriter.small{font-size:16px;font-weight:700;text-align:center;max-width:320px}
+
+    /* Buttons */
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border-radius:999px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);color:var(--muted-white);cursor:pointer;font-weight:700;gap:8px}
+    .btn.primary{background:linear-gradient(90deg,#6db9f1,#2b8ecb);color:#05203a;border:none}
+    .btn.btn-ghost{background:transparent;border:1px dashed rgba(255,255,255,0.08)}
+    .btn[disabled]{opacity:.6;cursor:default;pointer-events:none}
+
+    /* Balloons */
+    .balloon-cluster{position:absolute;top:12px;z-index:2;pointer-events:none;display:flex;gap:10px}
+    .balloon-cluster.left{left:12px}
+    .balloon-cluster.right{right:12px;top:28px}
+    .balloon{width:46px;height:62px;border-radius:50% 50% 48% 48%;position:relative;display:inline-block;transform-origin:center bottom;animation:floatUp linear infinite}
+    .balloon:after{content:'';position:absolute;left:50%;transform:translateX(-50%);bottom:-10px;width:2px;height:20px;background:rgba(255,255,255,0.06)}
+    .b1{background:linear-gradient(180deg,#7bdff6,#4aa9da);animation-duration:9s}
+    .b2{background:linear-gradient(180deg,#a8d2ff,#5f9ff3);animation-duration:9.8s;animation-delay:.5s}
+    .b3{background:linear-gradient(180deg,#bfe1ff,#79b4e6);animation-duration:8.3s;animation-delay:.9s}
+    .b4{background:linear-gradient(180deg,#89d7ff,#3da1d9);animation-duration:9.1s}
+    .b5{background:linear-gradient(180deg,#c8e9ff,#6fb0e1);animation-duration:9.7s;animation-delay:.7s}
+    .b6{background:linear-gradient(180deg,#9ed1ff,#4e99d9);animation-duration:8.0s;animation-delay:.3s}
+    @keyframes floatUp{0%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-12px) rotate(2deg)}100%{transform:translateY(0) rotate(-2deg)}}
+
+    /* Decorative */
+    .sparkles::before{content:'';position:absolute;left:8%;top:24%;width:8px;height:8px;background:var(--accent);border-radius:50%;box-shadow:64px 88px 0 0 rgba(255,241,192,0.6),220px 40px 0 0 rgba(255,241,192,0.35);filter:blur(.5px);animation:twinkle 3.2s linear infinite;z-index:1}
+    @keyframes twinkle{50%{opacity:.2}100%{opacity:1}}
+    .confetti{position:absolute;inset:0;pointer-events:none;z-index:3}
+
+    /* Responsive: stack slides vertically on small screens */
+    @media (max-width:720px){
+      .slides{flex-direction:column;width:100%;height:300%}
+      .slide{width:100%;height:33.3333%;padding:14px}
+      #type-1{font-size:36px}
+      .message-box{max-height:58vh;padding:12px}
+      .cake-svg{width:180px}
+      .typewriter.small{font-size:15px}
+    }
+  </style>
+</head>
+<body>
+  <main class="card" role="main" aria-live="polite">
+    <header class="card-header" aria-hidden="true">
+      <div class="ribbon left"></div>
+      <div class="title">Happy Birthday — Ysah</div>
+      <div class="ribbon right"></div>
+    </header>
+
+    <section class="slides" id="slides">
+      <!-- Slide 0 -->
+      <section class="slide" id="slide-0" data-slide="0" aria-label="Front slide — greeting">
+        <div class="scene">
+          <div class="balloon-cluster left" aria-hidden="true">
+            <div class="balloon b1"></div><div class="balloon b2"></div><div class="balloon b3"></div>
+          </div>
+
+          <div class="hero">
+            <h1 id="type-1" class="typewriter" aria-hidden="true"></h1>
+            <div class="hero-sub">Tap the button to read the full message</div>
+            <div class="hero-actions">
+              <button id="next-btn-0" class="btn primary" aria-label="Read message">Read message</button>
+            </div>
+          </div>
+
+          <div class="sparkles" aria-hidden="true"></div>
+        </div>
+      </section>
+
+      <!-- Slide 1 -->
+      <section class="slide" id="slide-1" data-slide="1" aria-label="Message slide">
+        <div class="scene">
+          <div class="balloon-cluster right" aria-hidden="true">
+            <div class="balloon b4"></div><div class="balloon b5"></div><div class="balloon b6"></div>
+          </div>
+
+          <div class="message-wrap" role="region" aria-label="Birthday message">
+            <div class="message-box">
+              <div class="message-inner">
+                <div id="type-2" class="message-text" aria-hidden="true"></div>
+              </div>
+            </div>
+
+            <div class="message-actions">
+              <button id="next-btn-1" class="btn">Next</button>
+              <button id="replay-btn-1" class="btn btn-ghost">Replay</button>
+            </div>
+          </div>
+
+          <div class="confetti" aria-hidden="true"></div>
+        </div>
+      </section>
+
+      <!-- Slide 2 -->
+      <section class="slide" id="slide-2" data-slide="2" aria-label="Celebration slide">
+        <div class="scene celebration">
+          <div class="party-lights" aria-hidden="true"></div>
+
+          <div class="celebration-center">
+            <div class="big-cake" aria-hidden="true">
+              <svg viewBox="0 0 240 220" class="cake-svg" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Birthday cake">
+                <defs><linearGradient id="cakeGrad" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#fff7f0"/><stop offset="1" stop-color="#ffd9c2"/></linearGradient></defs>
+                <rect x="30" y="80" rx="16" ry="16" width="180" height="80" fill="#e07a6a" />
+                <rect x="24" y="44" rx="20" ry="20" width="192" height="60" fill="url(#cakeGrad)" />
+                <g transform="translate(60,18)"><rect x="8" y="6" width="6" height="28" rx="2" fill="#fff"/><circle cx="11" cy="4" r="6" fill="#ffd36a"/></g>
+              </svg>
+            </div>
+
+            <div class="celebration-text">
+              <div id="type-3" class="typewriter small" aria-hidden="true"></div>
+              <div class="celebration-actions" style="margin-top:10px;">
+                <button id="replay-all" class="btn primary">Replay All</button>
+                <button id="share-btn" class="btn btn-ghost">Share</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="floating-stars" aria-hidden="true"></div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    // Single-file functional script: smooth RAF typewriter, responsive slide movement,
+    // buttons disabled while typing to avoid overlapping runs.
+    (function () {
+      const slidesEl = document.getElementById('slides');
+      const typeEl1 = document.getElementById('type-1');
+      const typeEl2 = document.getElementById('type-2');
+      const typeEl3 = document.getElementById('type-3');
+
+      const nextBtn0 = document.getElementById('next-btn-0');
+      const nextBtn1 = document.getElementById('next-btn-1');
+      const replayBtn1 = document.getElementById('replay-btn-1');
+      const replayAllBtn = document.getElementById('replay-all');
+      const shareBtn = document.getElementById('share-btn');
+
+      const text1 = "HAPPY BIRTHDAY, YSAH!!!";
+      const text2 = `Happy 18th Birthday, Ysah!! I knew that you prepared for your debut party and chose the right people to be part of your 18 traditions. And I was really grateful to be part of it—like, oh wow, hindi mo pala ako nalimutan? I appreciate you including me, although we are not very close and we don’t actually know each other personally; it’s just through mutuals that we got close. Your 18th celebration is special for you, and I don’t want to ruin that by not attending, which would make your people incomplete. Kaso kasi biglaan, may ganap pala kami. As much as I want na ayaw kong sumama para makapunta sa debut mo, kaso kasi hindi ako sanay na hindi nakikinig sa family ko. If I knew that I wouldn’t be able to attend, I would not have accepted your offer in the first place. Nag 'see you tomorrow' pa ako, pero hindi pala ako makakapunta. Nakakahiya at nakakaramdam ako ng guilt sabihin na hindi ako makakapunta kasi ikaw na 'yan, mas lalo na nagsabi ako na pupunta ako. So I hope you understand.
+
+My deepest apologies if I will be one of the reasons na hindi ma-complete ang 18 traditions mo. Sana huwag kang magtampo, huhu. To give my message to you, I wish you a Happy Birthday!! I pray that all the good things happen to you, as you’re deserving of all of it. The best ka! You’re one of the people I know who is humorous enough to make everyone laugh—a jolly and friendly person who doesn’t carry a heavy environment but instead brings lightness to it. That’s why it’s no wonder why there are so many people who want to be friends with you.
+
+I may not know you so well, pero napakaganda ng perspective ko sa’yo so paano pa ’yong mga mas close mo? I hope you are aware of it. At napakabait at generous mo pa. You deserve to be surrounded by people who will do the same for you because you are a standard in any kind of relationship 😮. I also hope that we stay in touch even after high school. More birthdays to come, Ysah!! At sana mapatawad mo ako dahil hindi ako makaka-attend. Enjoy your celebration without birthday blues! Happy Birthday again!!`;
+
+      const text3 = "Enjoy your celebration — wishing you many more joyful birthdays and bright days ahead! 🎉";
+
+      let isVertical = window.matchMedia('(max-width:720px)').matches;
+      let currentSlide = 0;
+      let typingSession = 0;
+
+      function updateOrientation() {
+        const prev = isVertical;
+        isVertical = window.matchMedia('(max-width:720px)').matches;
+        if (prev !== isVertical) slideTo(currentSlide, true);
+      }
+      window.addEventListener('resize', updateOrientation);
+
+      // RAF-based typewriter (smooth). speedCharMs = avg ms/char.
+      function typeTextRAF(el, text, speedCharMs = 80) {
+        const session = ++typingSession;
+        el.setAttribute('aria-hidden', 'false');
+        el.innerHTML = '';
+        let index = 0, acc = 0, last = performance.now();
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            function frame(now) {
+              if (session !== typingSession) return resolve('cancelled');
+              const dt = now - last; last = now; acc += dt;
+              const prev = index > 0 ? text[index - 1] : '';
+              const extra = (prev === ',' ? 60 : ('.!?'.includes(prev) ? 200 : 0));
+              const threshold = speedCharMs + extra;
+              while (acc >= threshold && index < text.length) {
+                const ch = text[index++];
+                if (ch === '\n') el.innerHTML += '<br/>';
+                else {
+                  const safe = (ch || '').replace(/[&<>"']/g, (m) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+                  el.innerHTML += safe;
+                }
+                acc -= threshold;
+              }
+              if (index >= text.length) return resolve('done');
+              requestAnimationFrame(frame);
+            }
+            requestAnimationFrame(frame);
+          }, 180);
+        });
+      }
+
+      function slideTo(index, instant = false) {
+        currentSlide = Math.max(0, Math.min(2, index));
+        const pct = (currentSlide * 33.333333).toFixed(6) + '%';
+        if (isVertical) {
+          const transform = `translateY(-${pct})`;
+          if (instant) { slidesEl.style.transition = 'none'; slidesEl.style.transform = transform; requestAnimationFrame(() => slidesEl.style.transition = ''); }
+          else slidesEl.style.transform = transform;
+        } else {
+          const transform = `translateX(-${pct})`;
+          if (instant) { slidesEl.style.transition = 'none'; slidesEl.style.transform = transform; requestAnimationFrame(() => slidesEl.style.transition = ''); }
+          else slidesEl.style.transform = transform;
+        }
+      }
+
+      function setControlsDuringTyping(isTyping) {
+        [nextBtn0, nextBtn1, replayBtn1, replayAllBtn, shareBtn].forEach(b => { if (b) b.disabled = isTyping; });
+      }
+
+      // initial typing slide 0
+      setControlsDuringTyping(true);
+      typeTextRAF(typeEl1, text1, 90).then(() => {
+        setControlsDuringTyping(false);
+        nextBtn0?.classList.add('ready');
+        nextBtn0?.focus();
+      });
+
+      // navigation
+      nextBtn0?.addEventListener('click', async () => {
+        if (nextBtn0.disabled) return;
+        setControlsDuringTyping(true);
+        slideTo(1);
+        const result = await typeTextRAF(typeEl2, text2, 56);
+        if (result === 'done') triggerConfetti();
+        setControlsDuringTyping(false);
+      });
+
+      nextBtn1?.addEventListener('click', async () => {
+        if (nextBtn1.disabled) return;
+        setControlsDuringTyping(true);
+        slideTo(2);
+        await typeTextRAF(typeEl3, text3, 80);
+        setControlsDuringTyping(false);
+      });
+
+      replayBtn1?.addEventListener('click', async () => {
+        if (replayBtn1.disabled) return;
+        typingSession++;
+        setControlsDuringTyping(true);
+        typeEl2.innerHTML = '';
+        await typeTextRAF(typeEl2, text2, 56);
+        setControlsDuringTyping(false);
+      });
+
+      replayAllBtn?.addEventListener('click', async () => {
+        if (replayAllBtn.disabled) return;
+        typingSession++;
+        setControlsDuringTyping(true);
+        slideTo(0, true);
+        typeEl1.innerHTML = '';
+        typeEl2.innerHTML = '';
+        typeEl3.innerHTML = '';
+        await typeTextRAF(typeEl1, text1, 90);
+        setControlsDuringTyping(false);
+        nextBtn0?.focus();
+      });
+
+      shareBtn?.addEventListener('click', async () => {
+        const shareData = { title: 'Happy 18th Birthday, Ysah!', text: `Happy 18th Birthday, Ysah!!\n\n(Shared from a birthday card)` };
+        if (navigator.share) {
+          try { await navigator.share(shareData); } catch (_) {}
+        } else if (navigator.clipboard) {
+          try {
+            await navigator.clipboard.writeText(`${shareData.title}\n\n${shareData.text}`);
+            const prev = shareBtn.innerText;
+            shareBtn.innerText = 'Copied!';
+            setTimeout(()=> shareBtn.innerText = prev, 1400);
+          } catch (_) {}
+        }
+      });
+
+      function triggerConfetti() {
+        const conf = document.querySelector('.confetti');
+        if (!conf) return;
+        conf.animate(
+          [{ transform: 'translateY(-10%)', opacity: 0 },
+           { transform: 'translateY(0%)', opacity: 0.9, offset: 0.3 },
+           { transform: 'translateY(80%)', opacity: 0 }],
+          { duration: 1400, easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'forwards' }
+        );
+      }
+
+      updateOrientation();
+      slideTo(0, true);
+    })();
+  </script>
+</body>
+</html>
